@@ -45,7 +45,6 @@ function Game(romfile::String)
 end
 
 function Base.close(game::Game)
-    game.state = Closed
     ALE_del(game.ale)
 end
 

@@ -17,7 +17,7 @@ export Game, draw, update, reset, step
 
 rom_directory(x::String) = joinpath(dirname(@__FILE__), "..", "deps", "rom_files", "$x.bin")
 
-mutable struct Game
+type Game
     ale::ALEPtr
     lives::Int
     died::Bool

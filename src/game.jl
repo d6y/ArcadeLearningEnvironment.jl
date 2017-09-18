@@ -24,7 +24,7 @@ function Game(romfile::String)
     loadROM(ale, string(rom_directory(romfile)))
     w = getScreenWidth(ale)
     h = getScreenHeight(ale)
-    actions = getLegalActionSet(ale)
+    actions = getMinimalActionSet(ale)
     Game(ale, w, h, actions)
 end
 

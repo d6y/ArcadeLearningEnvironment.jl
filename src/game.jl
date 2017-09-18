@@ -8,9 +8,7 @@ export
     Game,
     close!,
     draw,
-    get_inputs,
-    reset!,
-    step!
+    get_inputs
 
 rom_directory(x::String) = joinpath(dirname(@__FILE__), "..", "deps", "rom_files", "$x.bin")
 
@@ -44,13 +42,4 @@ end
 function get_inputs(game::Game)
     screen = reshape(getScreen(game.ale), (game.width, game.height))'
     imresize(screen, (42, 32))/256.
-end
-
-function reset!(game::Game)
-    reset_game(game.ale)
-    0, 0
-end
-
-function step!(game::Game, action::Int32)
-    act(game.ale, action), lives(game.ale)
 end

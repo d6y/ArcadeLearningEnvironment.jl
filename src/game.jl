@@ -40,6 +40,8 @@ function draw(game::Game)
 end
 
 function get_inputs(game::Game)
-    screen = reshape(getScreen(game.ale), (game.width, game.height))'
-    imresize(screen, (42, 32))/256.
+    screen = getScreen(game.ale)/(0xff*1.0)
+    screen = reshape(screen, (game.width, game.height))'
+    # imresize(screen, (42, 32))/256.
+    screen
 end

@@ -8,7 +8,8 @@ export
     Game,
     close!,
     draw,
-    get_inputs
+    get_inputs,
+    get_rgb
 
 rom_directory(x::String) = joinpath(dirname(@__FILE__), "..", "deps", "rom_files", "$x.bin")
 
@@ -24,7 +25,7 @@ function Game(romfile::String)
     loadROM(ale, string(rom_directory(romfile)))
     w = getScreenWidth(ale)
     h = getScreenHeight(ale)
-    actions = getMinimalActionSet(ale)
+    actions = getLegalActionSet(ale)
     Game(ale, w, h, actions)
 end
 
@@ -44,4 +45,11 @@ function get_inputs(game::Game)
     screen = reshape(screen, (game.width, game.height))'
     # imresize(screen, (42, 32))/256.
     screen
+end
+
+function get_rgb(game::Game)
+    rawscreen = Array{Cuchar}(game.width * game.height * 3)
+    getScreenRGB(game.ale, rawscreen)
+    rgb = Float64.(reshape(rawscreen/256.,(3, game.width, game.height)));
+    [rgb[i,:,:]' for i in 1:3]
 end

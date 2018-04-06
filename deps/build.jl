@@ -16,14 +16,14 @@ end
 using BinDeps
 @BinDeps.setup
 if libale_detected == false
-    # @windows_only begin
-    #     info("This package currently does not support Windows.")
-    #     info("You may want to try using the prebuilt libale_c.dll file from")
-    #     info("https://github.com/pkulchenko/alecwrap and setting the")
-    #     info("LIBALE_HOME environment variable to the directory containing")
-    #     info("the file, then issuing Pkg.build(\"ArcadeLearningEnvironment\")")
-    #     error("Automatic building of libale_c.dll on Windows is currently not supported yet.")
-    # end
+    if is_windows()
+        info("This package currently does not support Windows.")
+        info("You may want to try using the prebuilt libale_c.dll file from")
+        info("https://github.com/pkulchenko/alecwrap and setting the")
+        info("LIBALE_HOME environment variable to the directory containing")
+        info("the file, then issuing Pkg.build(\"ArcadeLearningEnvironment\")")
+        error("Automatic building of libale_c.dll on Windows is currently not supported yet.")
+    end
 
     libale_c = library_dependency("libale_c",
         aliases=["libale_c.so", "libale_c.dll"])

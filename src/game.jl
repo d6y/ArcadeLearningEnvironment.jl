@@ -20,8 +20,9 @@ struct Game
     actions::Array{Int32}
 end
 
-function Game(romfile::String)
+function Game(romfile::String, seed::Int64)
     ale = ALE_new()
+    setInt(ale, "random_seed", Cint(seed))
     loadROM(ale, string(rom_directory(romfile)))
     w = getScreenWidth(ale)
     h = getScreenHeight(ale)

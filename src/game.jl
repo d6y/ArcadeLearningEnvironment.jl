@@ -35,7 +35,7 @@ function close!(game::Game)
 end
 
 function draw(game::Game)
-    rawscreen = Array{Cuchar}(game.width * game.height * 3)
+    rawscreen = Array{Cuchar}(undef, game.width * game.height * 3)
     getScreenRGB(game.ale, rawscreen)
     colorview(RGB, Float64.(reshape(rawscreen/256.,
                                     (3, game.width, game.height))))';
@@ -49,7 +49,7 @@ function get_inputs(game::Game)
 end
 
 function get_rgb(game::Game)
-    rawscreen = Array{Cuchar}(game.width * game.height * 3)
+    rawscreen = Array{Cuchar}(undef, game.width * game.height * 3)
     getScreenRGB(game.ale, rawscreen)
     rgb = Float64.(reshape(rawscreen/256.,(3, game.width, game.height)));
     [rgb[i,:,:]' for i in 1:3]

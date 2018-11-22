@@ -10,8 +10,8 @@ rom = string(ENV["ATARI_DIR"], "SEAQUEST.BIN")
 println(rom)
 loadROM(ale, rom)
 
-S = Array(Int, episodes)
-TR = Array(Float64, episodes)
+S = Array{Int}(undef, episodes)
+TR = Array{Float64}(undef, episodes)
 for ei = 1:episodes
     ctr = 0.0
 

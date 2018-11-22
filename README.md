@@ -79,4 +79,10 @@ end
 ALE_del(ale)
 ```
 
+Example run:
+
+```
+ATARI_DIR=/path/to/supported_roms/ julia --project=. example.jl 
+```
+
 

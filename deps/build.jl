@@ -16,7 +16,7 @@ end
 using BinDeps
 @BinDeps.setup
 if libale_detected == false
-    if is_windows()
+    if Base.Sys.iswindows()
         info("This package currently does not support Windows.")
         info("You may want to try using the prebuilt libale_c.dll file from")
         info("https://github.com/pkulchenko/alecwrap and setting the")

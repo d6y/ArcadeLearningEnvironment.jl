@@ -9,7 +9,11 @@ export
     close!,
     draw,
     get_inputs,
-    get_rgb
+    get_rgb,
+    get_float,
+    get_int,
+    get_bool,
+    get_string
 
 rom_directory(x::String) = joinpath(dirname(@__FILE__), "..", "deps", "rom_files", "$x.bin")
 
@@ -54,3 +58,9 @@ function get_rgb(game::Game)
     rgb = Float64.(reshape(rawscreen/256.,(3, game.width, game.height)));
     [rgb[i,:,:]' for i in 1:3]
 end
+
+# Read access to A.L.E. configuration:
+get_float(game::Game, key::String) = getFloat(game.ale, key)
+get_int(game::Game, key::String) = getInt(game.ale, key)
+get_bool(game::Game, key::String) = getBool(game.ale, key)
+get_string(game::Game, key::String) = getString(game.ale, key)

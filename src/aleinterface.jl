@@ -13,11 +13,8 @@ const ALEStatePtr = Ptr{ALEState}
 ALE_new() = ccall((:ALE_new, libale_c), ALEPtr, ())
 ALE_del(ale::ALEPtr) = ccall((:ALE_del, libale_c), Nothing, (ALEPtr,), ale)
 
-function getString(ale::ALEPtr, key::String)
-    res = ccall((:getString, libale_c), Ptr{Cchar}, (ALEPtr, Ptr{Cchar}),
-        ale, key)
-    bytestring(res)
-end
+getString(ale::ALEPtr, key::String) = ccall((:getString, libale_c), Ptr{Cchar},
+    (ALEPtr, String), ale, key)
 getInt(ale::ALEPtr, key::String) = ccall((:getInt, libale_c), Cint,
     (ALEPtr, Ptr{Cchar}), ale, key)
 getBool(ale::ALEPtr, key::String) = ccall((:getBool, libale_c), Cint,
@@ -139,6 +136,7 @@ export
     getInt,
     getBool,
     getFloat,
+    getString,
     setString,
     setInt,
     setBool,

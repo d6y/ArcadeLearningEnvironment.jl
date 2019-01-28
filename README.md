@@ -85,4 +85,22 @@ Example run:
 ATARI_DIR=/path/to/supported_roms/ julia --project=. example.jl 
 ```
 
+## Game
+
+There's a `Game` class added by Dennis Wilson @d9w which gives higher-level access to A.L.E.
+For an example see:
+
+```
+julia --project=. game_example.jl
+```
+
+
+# Running unit tests
+
+There's not a lot to run at the moment, but:
+
+```
+julia --project=. test/runtests.jl
+```
+
 
